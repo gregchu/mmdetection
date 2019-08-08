@@ -3,7 +3,7 @@ import warnings
 
 import mmcv
 import numpy as np
-from imagecorruptions import corrupt
+# from imagecorruptions import corrupt
 from mmcv.parallel import DataContainer as DC
 from torch.utils.data import Dataset
 
@@ -188,12 +188,12 @@ class CustomDataset(Dataset):
         img_info = self.img_infos[idx]
         # load image
         img = mmcv.imread(osp.join(self.img_prefix, img_info['filename']))
-        # corruption
-        if self.corruption is not None:
-            img = corrupt(
-                img,
-                severity=self.corruption_severity,
-                corruption_name=self.corruption)
+        # # corruption
+        # if self.corruption is not None:
+        #     img = corrupt(
+        #         img,
+        #         severity=self.corruption_severity,
+        #         corruption_name=self.corruption)
         # load proposals if necessary
         if self.proposals is not None:
             proposals = self.proposals[idx][:self.num_max_proposals]
